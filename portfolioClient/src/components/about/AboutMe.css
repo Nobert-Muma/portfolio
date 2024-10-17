@@ -1,0 +1,144 @@
+#about-me-page{
+    max-width: 1440px;
+    width: 100%;
+    font-family: Inter, sans-serif;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+figure{
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-size: smaller;
+    text-indent: 0;
+    border: thin silver solid;
+    margin: 0.5em 0;
+    padding: 0.5em;
+}
+img.scaled{
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.about-me-para-text{
+    margin-bottom: 20px;
+    line-height: 140%;
+    color: #333333;
+    font-weight: 300;
+    font-size: 1.375rem;
+}
+
+#education-background{
+    padding: 20px 0;
+}
+#education-background h4{
+    color: #111111;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.4;
+    margin: 60px 0 20px 0;
+    text-decoration: underline;
+}
+#connect h4{
+    margin-bottom: 40px;
+    color: #111111;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 1.4;
+    margin: 60px 0 20px 0;
+    text-decoration: underline;
+}
+.para-years{
+    font-weight: 400;
+    font-size: 1rem;
+    color: #666666;
+    line-height: 160%;
+}
+#connect p{
+    line-height: 140%;
+    color: #333333;
+    font-weight: 300;
+    font-size: 1.375rem;
+}
+p.title{
+    color: #111111;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+p.entity{
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.entity,
+.para-years{
+    margin-bottom: 5px;
+}
+.high-school-paragraph{
+    margin-top: 24px;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+.icons a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;
+}
+.icons a:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.icons i{
+    font-size: 1.75rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .about-me-para-text{
+        margin-bottom: 10px;
+        line-height: 120%;
+        color: #333333;
+        font-weight: 200;
+        font-size: 1.285rem;
+    }
+    p.title{
+        color: #111111;
+        font-weight: 400;
+        margin-bottom: 2px;
+        font-size: 17px;
+    }
+    p.entity{
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+    
+    .entity,
+    .para-years{
+        margin-bottom: 3px;
+    }
+    .high-school-paragraph{
+        margin-top: 24px;
+    }
+    #education-background h4{
+        margin: 10px 0 10px 0;
+    }
+    #connect h4{
+        margin: 10px 0 10px 0;
+    }
+    #about-me-page{
+        padding: 14px 20px 0 20px;
+    }
+}
