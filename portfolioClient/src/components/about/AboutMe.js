@@ -62,7 +62,7 @@ function AboutMe(){
                 <a href="https://www.linkedin.com/in/nobert-muma-46a58b312/" aria-label="Connect with Nobert Muma on LinkedIn">
                     <i className="bi bi-linkedin" style={{color:"#0077B5"}}></i>
                 </a>
-                <a href="https://github.com/Nobert-Muma" aria-label="View Nobert Muma's GitHub profile">
+                <a href="#" aria-label="View Nobert Muma's GitHub profile">
                     <i className="bi bi-github" style={{color:"#171515"}}></i>
                 </a>
                 <a href="tel:+254758408965(Don't call me past 9 PM EAT)" aria-label="Call Nobert Muma at +254758408965(Please call before 9 PM EAT)">
