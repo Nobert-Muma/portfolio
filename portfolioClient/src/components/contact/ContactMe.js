@@ -5,14 +5,20 @@ function ContactMe(){
     const [name, setName]=useState("");
     const [email, setEmail]=useState("");
     const [message, setMessage]=useState("");
+    const [status, setStatus]=useState("");
+    const [isSubmitting, setIsSubmitting]=useState(false);
 
     function handleSubmit(e){
-        e.preventDefault()
+        e.preventDefault();
+        setIsSubmitting(true);
+        setStatus("");
+
         const newMessage={
             name:name,
             email:email,
             message:message
         }
+
         fetch('/messages', {
             method:"POST",
             headers: {
@@ -21,9 +27,28 @@ function ContactMe(){
             },
             body: JSON.stringify(newMessage)
         })
-        .then(response=>response.json())
-        .then(message=>console.log(message))
-        .catch(error=>console.error("Error adding message:", error));
+        .then(response=>{
+            if(!response.ok){
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(message=>{
+            setStatus("Success");
+
+            setName("");
+            setEmail("");
+            setMessage("");
+            // show success message to the user
+            alert("Message sent successfully! I'll get back to you soon.");
+        })
+        .catch(error=>{
+            console.error("Error adding message:", error);
+            setStatus("error");
+        })
+        .finally(()=>{
+            setIsSubmitting(false);
+        });
     }
     return(
         <div id="contact-me-page">
@@ -31,6 +56,18 @@ function ContactMe(){
                 Let's Build Something Amazing
             </h2>
             <p className="contact-me-para">Ready to start? Send me a message today and let's discuss your project goals.</p>
+
+            {status==="success"&&(
+                <div className="alert alert-success" role="alert">
+                    Message sent successfully!
+                </div>
+            )}
+
+            {status==="error"&&(
+                <div className="alert alert-danger" role="alert">
+                    Failed to send message. Please try again.
+                </div>
+            )}
             <form id="contact-me-form" onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label label">Name:</label>
@@ -46,7 +83,7 @@ function ContactMe(){
                     <textarea id="message" className="form-control control" name="message" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder="Write your awesome message :)" required/>
                 </div>
                 <input type="reset" className="btn btn-outline-danger" value={"CLEAR"}/>
-                <input type="submit" className="btn btn-outline-success" value={"SUBMIT YOUR MESSAGE"}/>
+                <input type="submit" className="btn btn-outline-success" value={isSubmitting ? "SENDING..." : "SUBMIT YOUR MESSAGE"} disabled={isSubmitting}/>
             </form>
             <div id="contact-me">
                 <p className="contact-me-para">You can also reach me through the following options:</p>
