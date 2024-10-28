@@ -1,24 +1,49 @@
 import "./ContactMe.css";
+import { useState } from 'react';
+
 function ContactMe(){
+    const [name, setName]=useState("");
+    const [email, setEmail]=useState("");
+    const [message, setMessage]=useState("");
+
+    function handleSubmit(e){
+        e.preventDefault()
+        const newMessage={
+            name:name,
+            email:email,
+            message:message
+        }
+        fetch('/messages', {
+            method:"POST",
+            headers: {
+                "Content-Type":"application/json",
+                "Accept":"application/json"
+            },
+            body: JSON.stringify(newMessage)
+        })
+        .then(response=>response.json())
+        .then(message=>console.log(message))
+        .catch(error=>console.error("Error adding message:", error));
+    }
     return(
         <div id="contact-me-page">
             <h2 className="heading-2">
                 Let's Build Something Amazing
             </h2>
             <p className="contact-me-para">Ready to start? Send me a message today and let's discuss your project goals.</p>
-            <form id="contact-me-form">
+            <form id="contact-me-form" onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label label">Name:</label>
-                    <input type="text" className="form-control control" id="name" name="name" placeholder="Fill with your name" autoComplete="name" required/>
+                    <input type="text" className="form-control control" id="name" name="name" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Fill with your name" autoComplete="name" required/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label label">Email address:</label>
-                    <input type="email" className="form-control control" id="email" name="email" placeholder="xyz@gmail.com" autoComplete="email" required/>
+                    <input type="email" className="form-control control" id="email" name="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="xyz@gmail.com" autoComplete="email" required/>
                     <div id="emailHelp" className="form-text">I'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="message" className="form-label label">Message:</label>
-                    <textarea id="message" className="form-control control" name="message" placeholder="Write your awesome message :)" required/>
+                    <textarea id="message" className="form-control control" name="message" value={message} onChange={(e)=>setMessage(e.target.value)} placeholder="Write your awesome message :)" required/>
                 </div>
                 <input type="reset" className="btn btn-outline-danger" value={"CLEAR"}/>
                 <input type="submit" className="btn btn-outline-success" value={"SUBMIT YOUR MESSAGE"}/>
