@@ -1,5 +1,6 @@
 import "./ContactMe.css";
 import { useState } from 'react';
+import API_URL from "../../config";
 
 function ContactMe(){
     const [name, setName]=useState("");
@@ -19,7 +20,7 @@ function ContactMe(){
             message:message
         }
 
-        fetch('/messages', {
+        fetch(`${API_URL}/messages`, {
             method:"POST",
             headers: {
                 "Content-Type":"application/json",
