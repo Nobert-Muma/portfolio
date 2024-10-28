@@ -1,6 +1,5 @@
 import "./ContactMe.css";
 import { useState } from 'react';
-import API_URL from "../../config";
 
 function ContactMe(){
     const [name, setName]=useState("");
@@ -20,7 +19,7 @@ function ContactMe(){
             message:message
         }
 
-        fetch(`${API_URL}/messages`, {
+        fetch(`http://portfolioserver-hc9a.onrender.com/messages`, {
             method:"POST",
             headers: {
                 "Content-Type":"application/json",
