@@ -10,7 +10,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 migrate=Migrate(app, db)
 db.init_app(app)
-CORS(app, origins=['https://portfolioclient.onrender.com'])
+CORS(app, resources={
+    r"/*": {
+        "origins": ["https://portfolioclient.onrender.com"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Accept"]
+    }
+})
 
 
 @app.route('/', methods=['GET'])
