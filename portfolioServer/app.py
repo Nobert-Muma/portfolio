@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 import os
 app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///messages.db'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://sokokenyadb_o4rb_user:We9DLAAfcu52h1yJVSSanMgVyRTqPM1x@dpg-csbjoodds78s73b8rskg-a.oregon-postgres.render.com/sokokenyadb_o4rb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 migrate=Migrate(app, db)
@@ -16,7 +16,7 @@ CORS(app)
 @app.route('/', methods=['GET'])
 def index():
     return "Welcome to my website"
-    
+
 @app.route('/messages', methods=['POST'])
 def add_message():
     name=request.get_json()['name']
