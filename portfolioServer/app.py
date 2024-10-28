@@ -28,7 +28,8 @@ def add_message():
     name=request.get_json()['name']
     email=request.get_json()['email']
     message=request.get_json()['message']
-    return Message.add_message(name, email, message)
+    result=Message.add_message(name, email, message)
+    return {"status": "success", "message": result}, 201
 
 if __name__=='__main__':
     port=int(os.environ.get("PORT", 5000))
