@@ -12,6 +12,11 @@ migrate=Migrate(app, db)
 db.init_app(app)
 CORS(app)
 
+
+@app.route('/', methods=['GET'])
+def index():
+    return "Welcome to my website"
+    
 @app.route('/messages', methods=['POST'])
 def add_message():
     name=request.get_json()['name']
