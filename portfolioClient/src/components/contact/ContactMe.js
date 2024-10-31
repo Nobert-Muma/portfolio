@@ -19,7 +19,7 @@ function ContactMe(){
             message:message
         }
 
-        fetch('https://portfolioserver-hc9a.onrender.com/messages', {
+        fetch('/messages', {
             method:"POST",
             headers: {
                 "Content-Type":"application/json",
@@ -88,16 +88,16 @@ function ContactMe(){
             <div id="contact-me">
                 <p className="contact-me-para">You can also reach me through the following options:</p>
                 <div className="contact-me-icons">
-                    <a href="mailto:mumanobert17@gmail.com" aria-label="Send email to Nobert Muma">
+                    <a href="mailto:mumanobert17@gmail.com" aria-label="Send email to Nobert Muma" >
                         <i className="bi bi-envelope" style={{color:"#CFD8DC"}}></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/nobert-muma-46a58b312/" aria-label="Connect with Nobert Muma on LinkedIn">
+                    <a href="https://www.linkedin.com/in/nobert-muma-46a58b312/" aria-label="Connect with Nobert Muma on LinkedIn" >
                         <i className="bi bi-linkedin" style={{color:"#0077B5"}}></i>
                     </a>
-                    <a href="#" aria-label="View Nobert Muma's GitHub profile">
+                    <a href="#" aria-label="View Nobert Muma's GitHub profile" >
                         <i className="bi bi-github" style={{color:"#171515"}}></i>
                     </a>
-                    <a href="tel:+254758408965(Don't call me past 9 PM EAT)" aria-label="Call Nobert Muma at +254758408965(Please call before 9 PM EAT)">
+                    <a href="tel:+254758408965(Don't call me past 9 PM EAT)" aria-label="Call Nobert Muma at +254758408965(Please call before 9 PM EAT)" >
                         <i className="bi bi-telephone" style={{color:"#009688"}}></i>
                     </a>
                 </div>

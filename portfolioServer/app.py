@@ -12,7 +12,6 @@ migrate=Migrate(app, db)
 db.init_app(app)
 CORS(app, resources={
     r"/*": {
-        "origins": ["https://nobertmuma.onrender.com"],
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Accept"]
     }
@@ -29,7 +28,7 @@ def add_message():
     email=request.get_json()['email']
     message=request.get_json()['message']
     result=Message.add_message(name, email, message)
-    return {"status": "success", "message": result}, 201
+    return {"status": "success", "message": result}
 
 if __name__=='__main__':
     port=int(os.environ.get("PORT", 5000))
