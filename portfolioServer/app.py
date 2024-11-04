@@ -37,7 +37,7 @@ db.init_app(app)
 # Configure CORS
 CORS(app, resources={
     r"/*": {
-        "origins": "*",  # In production, replace with your frontend domain
+        "origins": "https://portfolio-peach-one-17.vercel.app/",  # In production, replace with your frontend domain
         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Accept"]
     }
