@@ -5,6 +5,7 @@ from flask import make_response, jsonify
 
 class Message(db.Model, SerializerMixin):
     __tablename__='messages'
+
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(50), nullable=False)
     email=db.Column(db.String(254), nullable=False)
@@ -20,14 +21,18 @@ class Message(db.Model, SerializerMixin):
 
     @classmethod
     def add_message(cls, name, email, message):
-        new_message=cls(
-            name=name,
-            email=email,
-            message=message
-        )
-        db.session.add(new_message)
-        db.session.commit()
+        try:
+            new_message=cls(
+                name=name,
+                email=email,
+                message=message
+            )
+            db.session.add(new_message)
+            db.session.commit()
 
-        response=make_response(jsonify(new_message.to_dict()), 201)
-        return response
+            response=make_response(jsonify(new_message.to_dict()), 201)
+            return response
+        except Exception as e:
+            db.session.rollback()
+            raise e
 
