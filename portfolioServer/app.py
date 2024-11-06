@@ -1,7 +1,7 @@
 from models import db
 from models.message import Message
 from flask import Flask, request
-from flask_cors import CORS
+# from flask_cors import CORS
 from flask_migrate import Migrate
 import os
 from dotenv import load_dotenv
