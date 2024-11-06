@@ -5,6 +5,13 @@
         "src": "app.py",
         "use": "@vercel/python"
       }
+    ],
+    "routes": [
+      {
+        "src": "/messages",
+        "methods": ["POST"],
+        "dest": "/app.py"
+      }
     ]
   }
   
