@@ -1,7 +1,7 @@
 from models import db
 from models.message import Message
 from flask import Flask, request
-# from flask_cors import CORS
+from flask_cors import CORS
 from flask_migrate import Migrate
 import os
 from dotenv import load_dotenv
@@ -36,7 +36,14 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 migrate = Migrate(app, db)
 db.init_app(app)
 
-)
+# Configure CORS
+CORS(app, resources={
+    r"/*": {
+        "origins": "https://portfolio-peach-one-17.vercel.app",  # In production, replace with your frontend domain
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Accept"]
+    }
+})
 
 @app.route('/', methods=['GET'])
 def index():
