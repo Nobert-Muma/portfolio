@@ -17,6 +17,8 @@ POSTGRES_USER = os.getenv('POSTGRES_USER')
 POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
 POSTGRES_HOST = os.getenv('POSTGRES_HOST')
 POSTGRES_DATABASE = os.getenv('POSTGRES_DATABASE', 'verceldb')
+POSTGRES_URL_NON_POOLING=os.getenv('POSTGRES_URL_NON_POOLING')
+POSTGRES_PRISMA_URL=os.getenv('POSTGRES_PRISMA_URL')
 
 # Construct database URL
 if POSTGRES_URL:
@@ -26,7 +28,7 @@ else:
     print(f"Database URL: {DATABASE_URL.replace(POSTGRES_PASSWORD, '****')}")
 
 # Configure Flask app
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
@@ -34,14 +36,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 migrate = Migrate(app, db)
 db.init_app(app)
 
-# Configure CORS
-CORS(app, resources={
-    r"/*": {
-        "origins": "https://portfolio-peach-one-17.vercel.app",  # In production, replace with your frontend domain
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "Accept"]
-    }
-})
+)
 
 @app.route('/', methods=['GET'])
 def index():
